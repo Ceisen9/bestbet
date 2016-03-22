@@ -14,9 +14,21 @@ class Team < ActiveRecord::Base
     all_divisions = self.all.map{|team| team.division}.uniq.sort
   end
 
+  def self.all_conferences
+    all_conferences = self.all.map{|team| team.conference}.uniq.sort
+  end
+
   def self.find_all_with_division(division)
     if division
       division == "All" ? self.all : self.where(division: division)
+    else
+      []
+    end
+  end
+
+  def self.find_all_with_conference(conference)
+    if conference
+      conference == "All" ? self.all : self.where(conference: conference)
     else
       []
     end

@@ -1,6 +1,11 @@
 class GamesController < ApplicationController
   def index
-    @games = Game.all
+    # remember the domain name selected
+    @date.year = params[:date] || 'All'
+    # get all teams based on domain query
+    @teams = Team.find_all_with_year(@date.year)
+    # get all the available years
+    @dates.year = @games.all_years
   end
 
   def new

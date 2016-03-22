@@ -1,4 +1,3 @@
-
 <h2>NATIONAL FOOTBALL LEAGUE</h2>
   <div class='row'>
 
@@ -34,6 +33,23 @@
               <%= 'btn-primary btn-active' if @division == divisiony %>
               btn-sm'
             ><%= divisiony %></a>
+          <% end %>
+      </div>
+      <h4>By Conference</h4>
+      <div class='btn-group-vertical'>
+        <a href='<%= teams_path %>'
+          type='button'
+          class='btn btn-default
+          <%= 'btn-primary btn-active' if @conference == 'All' %>
+          btn-sm'
+        >All</a>
+          <% @conferences.each do |conferencey| %>
+            <a href='/teams?conference=<%= conferencey %>'
+              type='button'
+              class='btn btn-default
+              <%= 'btn-primary btn-active' if @conference == conferencey %>
+              btn-sm'
+            ><%= conferencey %></a>
           <% end %>
       </div>
     </div>
