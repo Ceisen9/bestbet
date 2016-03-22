@@ -16,4 +16,25 @@
         <% end %>
       </table>
     </div>
+
+    <div class='col-md-3'>
+      <h3>Filters</h3>
+      <h4>By Division</h4>
+      <div class='btn-group-vertical'>
+        <a href='<%= teams_path %>'
+          type='button'
+          class='btn btn-default
+          <%= 'btn-primary btn-active' if @division == 'All' %>
+          btn-sm'
+        >All</a>
+          <% @divisions.each do |divisiony| %>
+            <a href='/teams?division=<%= divisiony %>'
+              type='button'
+              class='btn btn-default
+              <%= 'btn-primary btn-active' if @division == divisiony %>
+              btn-sm'
+            ><%= divisiony %></a>
+          <% end %>
+      </div>
+    </div>
   </div>

@@ -1,6 +1,11 @@
 class TeamsController < ApplicationController
   def index
-    @teams = Team.all
+    # remember the domain name selected
+    @division = params[:division] || 'All'
+    # get all people based on domain query
+    @teams = Team.find_all_with_division(@division)
+    # get all the available domain names
+    @divisions = @teams.all_divisions
   end
 
   def show

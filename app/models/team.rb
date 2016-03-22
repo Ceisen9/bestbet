@@ -10,4 +10,16 @@ class Team < ActiveRecord::Base
     Game.where("home_team_id = ? AND home_team_score > away_team_score", self.id)
   end
 
+  def self.all_divisions
+    all_divisions = self.all.map{|team| team.division}.uniq.sort
+  end
+
+  def self.find_all_with_division(division)
+    if division
+      division == "All" ? self.all : self.where(division: division)
+    else
+      []
+    end
+  end
+
 end
