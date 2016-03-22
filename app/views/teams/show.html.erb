@@ -1,0 +1,27 @@
+<%= link_to "&larr; Back".html_safe, root_path %>
+
+<h2><%= @team.name %></h2>
+
+<h3>Games</h3>
+<div class="games">
+  <div class='col-md-3'>
+    <table class='table table-striped'>
+      <th>Date</th>
+      <th>Away Team</th>
+      <th>Home Team</th>
+      <th>Score</th>
+      <th>Betting Line</th>
+      <th>Over Under</th>
+      <% @team.games.each do |game| %>
+        <tr>
+          <td><%= game.date %></td>
+          <td><%= game.away_team.name %></td>
+          <td><%= game.home_team.name %></td>
+          <td><%= game.away_team_score%> - <%= game.home_team_score%></td>
+          <td><%= game.betting_line %></td>
+          <td><%= game.over_under %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

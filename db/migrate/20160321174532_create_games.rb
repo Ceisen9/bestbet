@@ -6,8 +6,8 @@ class CreateGames < ActiveRecord::Migration
       t.belongs_to :home_team, class_name: "team"
       t.integer :away_team_score
       t.integer :home_team_score
-      t.integer :betting_line
-      t.integer :over_under
+      t.float :betting_line
+      t.float :over_under
     end
   end
 end

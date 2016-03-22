@@ -6,7 +6,6 @@ class Team < ActiveRecord::Base
     return Game.where("home_team_id = ? OR away_team_id = ?", self.id, self.id)
   end
 
-
   def home_wins
     Game.where("home_team_id = ? AND home_team_score > away_team_score", self.id)
   end

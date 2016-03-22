@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20160321174532) do
     t.integer "home_team_id"
     t.integer "away_team_score"
     t.integer "home_team_score"
-    t.integer "betting_line"
-    t.integer "over_under"
+    t.float   "betting_line"
+    t.float   "over_under"
   end
 
   create_table "teams", force: :cascade do |t|
