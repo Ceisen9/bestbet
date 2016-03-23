@@ -3,6 +3,13 @@
 <h2><%= @team.name %></h2>
 
 <h3>Regular Season Games</h3>
+<h3>record <%= @wins %> - <%= @losses %></h3>
+<h3>average betting line <%= @betting_lines %></h3>
+<h3>average O/U <%= @over_unders %></h3>
+<h3>Win % <%= @win_percent %>%</h3>
+<h3>Win % on betting line <%= @betting_line_success_rate %>%</h3>
+<h3>Win % on over under <%= @over_under_success_rate %>%</h3>
+
 
 <div class="row">
 
@@ -38,7 +45,7 @@
         btn-sm'
       >All</a>
         <% @seasons.each do |year| %>
-          <a href='/teams/<%=@team.id%>?games.season=<%= year %>'
+          <a href='/teams/<%=@team.id%>?season=<%= year %>'
             type='button'
             class='btn btn-default
             <%= 'btn-primary btn-active' if @season == year %>

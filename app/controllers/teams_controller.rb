@@ -33,13 +33,26 @@ class TeamsController < ApplicationController
     # get all the available years
     # @seasons = @team.games.map{|game| game.season}.uniq.sort
     @seasons = Team.all_years(@team)
+    @game_count = @games.count.to_f
+    @wins = @games.where(winner: @team.id).count.to_f
+    @losses = @game_count - @wins
+    #  @wins = Team.wins(@games, @team)
+    # @betting_line = Team.betting_line_sum(@games)
+    @betting_lines = (@games.map{|game| game.betting_line}.sum) / @game_count
+    @over_unders = (@games.map{|game| game.over_under}.sum) / @game_count
+
+    @win_percent = ((@wins/@game_count) * 100)
+    @betting_line_success_count = @games.where(betting_line_winner: @team.id).count
+    @betting_line_success_rate = (@betting_line_success_count / @game_count) * 100
+
+    @over_under_success_rate = (@games.map{|game| game.over_under_success}.sum / @game_count) * 100
 
 
   end
 
   private
   def team_params
-    params.require(:team).permit(:name, :division, :conference, games_attributes: [:season])
+    params.require(:team).permit(:name, :division, :conference)
   end
 
 end

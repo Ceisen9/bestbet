@@ -2,14 +2,26 @@ class Team < ActiveRecord::Base
   has_many :away_games, dependent: :destroy, class_name: "Game", foreign_key: :away_team_id
   has_many :home_games, dependent: :destroy, class_name: "Game", foreign_key: :home_team_id
 
-  accepts_nested_attributes_for :home_games, :away_games
+  # accepts_nested_attributes_for :home_games, :away_games
 
   def games
     return Game.where("home_team_id = ? OR away_team_id = ?", self.id, self.id)
   end
 
+  def games_played(games)
+    games.count
+  end
+
+  def wins(games, team)
+    games.where(winner: team.id).count
+  end
+
   def home_wins
     Game.where("home_team_id = ? AND home_team_score > away_team_score", self.id)
+  end
+
+  def betting_line_sum(games)
+    games.map{|game| game.betting_line}.sum
   end
 
   def self.all_divisions
@@ -38,10 +50,6 @@ class Team < ActiveRecord::Base
 
   def self.all_years(team)
     all_years = team.games.map{|game| game.season}.uniq.sort
-  end
-
-  def self.find_all_with_year(team, year)
-    self.where(team.games.season = year)
   end
 
 end
