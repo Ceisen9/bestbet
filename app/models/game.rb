@@ -2,15 +2,13 @@ class Game < ActiveRecord::Base
   belongs_to :away_team, class_name: "Team", foreign_key: :away_team_id
   belongs_to :home_team, class_name: "Team", foreign_key: :home_team_id
 
-  def self.all_years
-    all_years = self.all.map{|game| game.date.year}.uniq.sort
-  end
+  before_save :generate_season
 
-  def self.find_all_with_year(year)
-    if year
-      year == "All" ? self.all : self.where(date.year = year)
+  def generate_season
+    if self.date.month < 2
+      self.season = self.date.year - 1
     else
-      []
+      self.season = self.date.year
     end
   end
 

@@ -1,11 +1,6 @@
 class GamesController < ApplicationController
   def index
-    # remember the domain name selected
-    @date.year = params[:date] || 'All'
-    # get all teams based on domain query
-    @teams = Team.find_all_with_year(@date.year)
-    # get all the available years
-    @dates.year = @games.all_years
+    @games = Game.all
   end
 
   def new
@@ -50,7 +45,7 @@ class GamesController < ApplicationController
 
   private
   def game_params
-    params.require(:game).permit(:date, :away_team, :home_team, :away_team_score, :home_team_score, :betting_line, :over_under, :away_team_id, :home_team_id)
+    params.require(:game).permit(:date, :away_team, :home_team, :away_team_score, :home_team_score, :betting_line, :over_under, :away_team_id, :home_team_id, :season)
   end
 
 end

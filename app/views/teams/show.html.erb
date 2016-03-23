@@ -5,6 +5,7 @@
 <h3>Regular Season Games</h3>
 
 <div class="row">
+
   <div class='col-md-3'>
     <table class='table table-striped'>
       <th>Date</th>
@@ -13,7 +14,7 @@
       <th>Score</th>
       <th>Betting Line</th>
       <th>Over Under</th>
-      <% @team.games.each do |game| %>
+      <% @games.each do |game| %>
         <tr>
           <td><%= game.date %></td>
           <td><%= game.away_team.name %></td>
@@ -28,21 +29,22 @@
 
   <div class='col-md-3'>
     <h3>Filters</h3>
-    <h4>By Year</h4>
+    <h4>By Season</h4>
     <div class='btn-group-vertical'>
-      <a href='<%= teams_path %>'
+      <a href='<%= team_path(@team) %>'
         type='button'
         class='btn btn-default
-        <%= 'btn-primary btn-active' if @division == 'All' %>
+        <%= 'btn-primary btn-active' if @season == 'All' %>
         btn-sm'
       >All</a>
-        <% @divisions.each do |divisiony| %>
-          <a href='/teams?division=<%= divisiony %>'
+        <% @seasons.each do |year| %>
+          <a href='/teams/<%=@team.id%>?games.season=<%= year %>'
             type='button'
             class='btn btn-default
-            <%= 'btn-primary btn-active' if @division == divisiony %>
+            <%= 'btn-primary btn-active' if @season == year %>
             btn-sm'
-          ><%= divisiony %></a>
+          ><%= year %></a>
         <% end %>
     </div>
+  </div>
 </div>

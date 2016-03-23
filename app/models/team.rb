@@ -34,4 +34,12 @@ class Team < ActiveRecord::Base
     end
   end
 
+  def self.all_years(team)
+    all_years = team.games.map{|game| game.season}.uniq.sort
+  end
+
+  def self.find_all_with_year(team, year)
+    self.where(team.games.season = year)
+  end
+
 end

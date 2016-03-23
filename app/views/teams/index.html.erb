@@ -1,56 +1,56 @@
 <h2>NATIONAL FOOTBALL LEAGUE</h2>
-  <div class='row'>
+<div class='row'>
 
-    <div class='col-md-3'>
-      <table class='table table-striped'>
-        <th>Conference</th>
-        <th>Division</th>
-        <th>Team</th>
-        <% @teams.each do |team| %>
-          <tr>
-            <td><%= team.conference %></td>
-            <td><%= team.division %></td>
-            <td><%= link_to team.name, team_path(team) %></td>
-          </tr>
+  <div class='col-md-3'>
+    <table class='table table-striped'>
+      <th>Conference</th>
+      <th>Division</th>
+      <th>Team</th>
+      <% @teams.each do |team| %>
+        <tr>
+          <td><%= team.conference %></td>
+          <td><%= team.division %></td>
+          <td><%= link_to team.name, team_path(team) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class='col-md-3'>
+    <h3>Filters</h3>
+    <h4>By Division</h4>
+    <div class='btn-group-vertical'>
+      <a href='<%= teams_path %>'
+        type='button'
+        class='btn btn-default
+        <%= 'btn-primary btn-active' if @division == 'All' %>
+        btn-sm'
+      >All</a>
+        <% @divisions.each do |divisiony| %>
+          <a href='/teams?division=<%= divisiony %>'
+            type='button'
+            class='btn btn-default
+            <%= 'btn-primary btn-active' if @division == divisiony %>
+            btn-sm'
+          ><%= divisiony %></a>
         <% end %>
-      </table>
     </div>
-
-    <div class='col-md-3'>
-      <h3>Filters</h3>
-      <h4>By Division</h4>
-      <div class='btn-group-vertical'>
-        <a href='<%= teams_path %>'
-          type='button'
-          class='btn btn-default
-          <%= 'btn-primary btn-active' if @division == 'All' %>
-          btn-sm'
-        >All</a>
-          <% @divisions.each do |divisiony| %>
-            <a href='/teams?division=<%= divisiony %>'
-              type='button'
-              class='btn btn-default
-              <%= 'btn-primary btn-active' if @division == divisiony %>
-              btn-sm'
-            ><%= divisiony %></a>
-          <% end %>
-      </div>
-      <h4>By Conference</h4>
-      <div class='btn-group-vertical'>
-        <a href='<%= teams_path %>'
-          type='button'
-          class='btn btn-default
-          <%= 'btn-primary btn-active' if @conference == 'All' %>
-          btn-sm'
-        >All</a>
-          <% @conferences.each do |conferencey| %>
-            <a href='/teams?conference=<%= conferencey %>'
-              type='button'
-              class='btn btn-default
-              <%= 'btn-primary btn-active' if @conference == conferencey %>
-              btn-sm'
-            ><%= conferencey %></a>
-          <% end %>
-      </div>
+    <h4>By Conference</h4>
+    <div class='btn-group-vertical'>
+      <a href='<%= teams_path %>'
+        type='button'
+        class='btn btn-default
+        <%= 'btn-primary btn-active' if @conference == 'All' %>
+        btn-sm'
+      >All</a>
+        <% @conferences.each do |conferencey| %>
+          <a href='/teams?conference=<%= conferencey %>'
+            type='button'
+            class='btn btn-default
+            <%= 'btn-primary btn-active' if @conference == conferencey %>
+            btn-sm'
+          ><%= conferencey %></a>
+        <% end %>
     </div>
   </div>
+</div>
