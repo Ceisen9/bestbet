@@ -39,7 +39,7 @@ class TeamsController < ApplicationController
 
   private
   def team_params
-    params.require(:team).permit(:name, :division, :conference)
+    params.require(:team).permit(:name, :division, :conference, games_attributes: [:season])
   end
 
 end

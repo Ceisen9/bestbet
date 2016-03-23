@@ -2,6 +2,8 @@ class Team < ActiveRecord::Base
   has_many :away_games, dependent: :destroy, class_name: "Game", foreign_key: :away_team_id
   has_many :home_games, dependent: :destroy, class_name: "Game", foreign_key: :home_team_id
 
+  accepts_nested_attributes_for :home_games, :away_games
+
   def games
     return Game.where("home_team_id = ? OR away_team_id = ?", self.id, self.id)
   end
