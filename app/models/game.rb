@@ -61,11 +61,11 @@ class Game < ActiveRecord::Base
   end
 
   def betting_line_success_count_home
-    self.winner == self.home_team_id
+    self.betting_line_winner == self.home_team_id
   end
 
   def betting_line_success_count_away
-    self.winner == self.away_team_id
+    self.betting_line_winner == self.away_team_id
   end
 
   def over_under_sum
