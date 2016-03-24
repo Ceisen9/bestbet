@@ -14,9 +14,9 @@
  *= require_self
  */
 
-*{
+/**{
   text-align: center;
-}
+}*/
 
 .row{
   padding-top: 20px;
