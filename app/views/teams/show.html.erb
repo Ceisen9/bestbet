@@ -14,28 +14,6 @@
 
 
 <div class="row">
-
-  <div class='col-md-6'>
-    <table class='table table-striped'>
-      <th>Date</th>
-      <th>Away Team</th>
-      <th>Home Team</th>
-      <th>Score</th>
-      <th>Betting Line</th>
-      <th>Over Under</th>
-      <% @games.each do |game| %>
-        <tr>
-          <td><%= game.date %></td>
-          <td><%= game.away_team.name %></td>
-          <td><%= game.home_team.name %></td>
-          <td><%= game.away_team_score%> - <%= game.home_team_score%></td>
-          <td><%= game.betting_line %></td>
-          <td><%= game.over_under %></td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
-
   <div class='col-md-1'>
     <h3>Filters</h3>
     <h4>Location</h4>
@@ -72,6 +50,27 @@
           ><%= year %></a>
         <% end %>
     </div>
+  </div>
+
+  <div class='col-md-6'>
+    <table class='table table-striped'>
+      <th>Date</th>
+      <th>Away Team</th>
+      <th>Home Team</th>
+      <th>Score</th>
+      <th>Betting Line</th>
+      <th>Over Under</th>
+      <% @games.each do |game| %>
+        <tr>
+          <td><%= game.date %></td>
+          <td><%= game.away_team.name %></td>
+          <td><%= game.home_team.name %></td>
+          <td><%= game.away_team_score%> - <%= game.home_team_score%></td>
+          <td><%= game.betting_line %></td>
+          <td><%= game.over_under %></td>
+        </tr>
+      <% end %>
+    </table>
   </div>
 
 </div>

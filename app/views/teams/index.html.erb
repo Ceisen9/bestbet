@@ -2,22 +2,6 @@
 <h3><%= link_to "Go to Games", games_path %></h3>
 
 <div class='row'>
-
-  <div class='col-md-3'>
-    <table class='table table-striped'>
-      <th>Conference</th>
-      <th>Division</th>
-      <th>Team</th>
-      <% @teams.each do |team| %>
-        <tr>
-          <td><%= team.conference %></td>
-          <td><%= team.division %></td>
-          <td><%= link_to team.name, team_path(team) %></td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
-
   <div class='col-md-1'>
     <h3>Filters</h3>
     <h4>By Division</h4>
@@ -55,4 +39,20 @@
         <% end %>
     </div>
   </div>
+
+  <div class='col-md-3'>
+    <table class='table table-striped'>
+      <th>Conference</th>
+      <th>Division</th>
+      <th>Team</th>
+      <% @teams.each do |team| %>
+        <tr>
+          <td><%= team.conference %></td>
+          <td><%= team.division %></td>
+          <td><%= link_to team.name, team_path(team) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
 </div>
