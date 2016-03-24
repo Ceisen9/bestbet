@@ -14,8 +14,10 @@
  *= require_self
  */
 
-/**{
-  background-color: goldenrod;
-  color: navy;
+*{
   text-align: center;
-}*/
+}
+
+.row{
+  padding-top: 20px;
+}

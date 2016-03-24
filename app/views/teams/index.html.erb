@@ -1,4 +1,6 @@
 <h2>NATIONAL FOOTBALL LEAGUE</h2>
+<h3><%= link_to "Go to Games", games_path %></h3>
+
 <div class='row'>
 
   <div class='col-md-3'>
@@ -16,7 +18,7 @@
     </table>
   </div>
 
-  <div class='col-md-3'>
+  <div class='col-md-1'>
     <h3>Filters</h3>
     <h4>By Division</h4>
     <div class='btn-group-vertical'>
@@ -26,13 +28,13 @@
         <%= 'btn-primary btn-active' if @division == 'All' %>
         btn-sm'
       >All</a>
-        <% @divisions.each do |divisiony| %>
-          <a href='/teams?division=<%= divisiony %>'
+        <% @divisions.each do |division| %>
+          <a href='/teams?division=<%= division %>'
             type='button'
             class='btn btn-default
-            <%= 'btn-primary btn-active' if @division == divisiony %>
+            <%= 'btn-primary btn-active' if @division == division %>
             btn-sm'
-          ><%= divisiony %></a>
+          ><%= division %></a>
         <% end %>
     </div>
     <h4>By Conference</h4>
@@ -43,13 +45,13 @@
         <%= 'btn-primary btn-active' if @conference == 'All' %>
         btn-sm'
       >All</a>
-        <% @conferences.each do |conferencey| %>
-          <a href='/teams?conference=<%= conferencey %>'
+        <% @conferences.each do |conference| %>
+          <a href='/teams?conference=<%= conference %>'
             type='button'
             class='btn btn-default
-            <%= 'btn-primary btn-active' if @conference == conferencey %>
+            <%= 'btn-primary btn-active' if @conference == conference %>
             btn-sm'
-          ><%= conferencey %></a>
+          ><%= conference %></a>
         <% end %>
     </div>
   </div>

@@ -44,4 +44,40 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def games
+    return self.where("home_team_id = ? OR away_team_id = ?", self.id, self.id)
+  end
+
+  def home_team_wins
+     self.winner == self.home_team_id
+  end
+
+  def away_team_wins
+    self.winner == self.away_team_id
+  end
+
+  def self.betting_line_sum(games)
+    games.map{|game| game.betting_line}.sum
+  end
+
+  def betting_line_success_count_home
+    self.winner == self.home_team_id
+  end
+
+  def betting_line_success_count_away
+    self.winner == self.away_team_id
+  end
+
+  def over_under_sum
+    self.map{|game| game.over_under}.sum
+  end
+
+  def over_under_success_count
+    self.over_under_success == 1
+  end
+
+  def all_years
+    all_years = self.map{|game| game.season}.uniq.sort
+  end
+
 end

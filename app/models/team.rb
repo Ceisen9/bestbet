@@ -8,20 +8,32 @@ class Team < ActiveRecord::Base
     return Game.where("home_team_id = ? OR away_team_id = ?", self.id, self.id)
   end
 
-  def games_played(games)
-    games.count
+  def game_count(games)
+    games.count.to_f
   end
 
-  def wins(games, team)
-    games.where(winner: team.id).count
+  def wins(games)
+    games.where(winner: self.id).count
   end
 
-  def home_wins
-    Game.where("home_team_id = ? AND home_team_score > away_team_score", self.id)
-  end
+  # def home_games
+  #   Game.where("home_team_id = ?", self.id)
+  # end
 
   def betting_line_sum(games)
     games.map{|game| game.betting_line}.sum
+  end
+
+  def betting_line_success_count(games)
+    games.where(betting_line_winner: self.id).count
+  end
+
+  def over_under_sum(games)
+    games.map{|game| game.over_under}.sum
+  end
+
+  def over_under_success_count(games)
+    games.map{|game| game.over_under_success}.sum
   end
 
   def self.all_divisions

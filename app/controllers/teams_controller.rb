@@ -3,6 +3,7 @@ class TeamsController < ApplicationController
     # remember the domain name selected
     @division = params[:division]
     @conference = params[:conference]
+
     # get all teams based on domain query
     if @division
       @teams = Team.find_all_with_division(@division)
@@ -13,6 +14,7 @@ class TeamsController < ApplicationController
       @division = 'All'
       @conference = 'All'
     end
+
     # get all the available divisions and conferences
     @divisions = @teams.all_divisions
     @conferences = @teams.all_conferences
@@ -20,33 +22,48 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @team = Team.find(params[:id])
     # remember the domain name selected
+    @team = Team.find(params[:id])
+
+    #record the params to grab from the browser
     @season = params[:season]
+    @location = params[:location]
+
+    # get all the available years
+    @seasons = Team.all_years(@team)
+    @locations = ['Home', 'Away']
+
     # get all teams based on domain query
     if @season
       @games = @team.games.where(season: @season)
+    elsif @location
+      if @location = 'Home'
+        @games = @team.games.where(home_team: @team.id)
+      elsif @location = 'Away'
+        @games = @team.games.where(away_team: @team.id)
+      end
     else
       @games = @team.games
       @season = 'All'
+      @location = 'All'
     end
-    # get all the available years
-    # @seasons = @team.games.map{|game| game.season}.uniq.sort
-    @seasons = Team.all_years(@team)
-    @game_count = @games.count.to_f
-    @wins = @games.where(winner: @team.id).count.to_f
-    @losses = @game_count - @wins
-    #  @wins = Team.wins(@games, @team)
-    # @betting_line = Team.betting_line_sum(@games)
-    @betting_lines = (@games.map{|game| game.betting_line}.sum) / @game_count
-    @over_unders = (@games.map{|game| game.over_under}.sum) / @game_count
 
-    @win_percent = ((@wins/@game_count) * 100)
-    @betting_line_success_count = @games.where(betting_line_winner: @team.id).count
-    @betting_line_success_rate = (@betting_line_success_count / @game_count) * 100
+    #various statistics
+    @game_count = @team.game_count(@games)
 
-    @over_under_success_rate = (@games.map{|game| game.over_under_success}.sum / @game_count) * 100
+    @wins = @team.wins(@games)
 
+    @losses = @game_count.to_i - @wins
+
+    @betting_lines = (@team.betting_line_sum(@games) / @game_count).round(1)
+
+    @over_unders = (@team.over_under_sum(@games) / @game_count).round(1)
+
+    @win_percent = ((@wins.to_f/@game_count) * 100).round(1)
+
+    @betting_line_success_rate = ((@team.betting_line_success_count(@games) / @game_count) * 100).round(1)
+
+    @over_under_success_rate = ((@team.over_under_success_count(@games) / @game_count) * 100).round(1)
 
   end
 

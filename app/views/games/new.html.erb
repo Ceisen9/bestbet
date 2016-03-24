@@ -1,0 +1,37 @@
+<%= link_to "&larr; Home".html_safe, root_path %>
+
+<h1>Log a New Result for the <%= @team.name%></h1>
+
+<%= form_for :create do |f| %>
+  <%= date_field(:date, :date) %>
+  <br>
+  <br>
+  <%= form_tag do %>
+    <%= @team.name + " are:"%>
+  <% end %>
+  <br>
+  <%=f.radio_button :away_team, 'Away' %> Away
+  <%=f.radio_button :away_team, 'Home' %> Home
+  <br>
+  <%= f.label :opponent %>
+  <%= f.text_field :opponent %>
+  <br>
+  <br>
+  <%= f.label @team.name + ' score'%>
+  <%= f.text_field :away_team_score %>
+  <br>
+  <br>
+  <%= f.label :opponent_score %>
+  <%= f.text_field :opponent_score %>
+  <br>
+  <br>
+  <%= f.label :betting_line %>
+  <%= f.text_field :betting_line%>
+  <br>
+  <br>
+  <%= f.label :over_under %>
+  <%= f.text_field :over_under %>
+  <br>
+  <br>
+  <%= f.submit "Submit" %>
+<% end %>

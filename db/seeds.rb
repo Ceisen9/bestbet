@@ -44,7 +44,7 @@ dolphins = Team.create(name: "Miami Dolphins", division: "AFC East", conference:
 patriots = Team.create(name: "New England Patriots", division: "AFC East", conference: "AFC")
 jets = Team.create(name: "New York Jets", division: "AFC East", conference: "AFC")
 
-CSV.foreach('db/nfl_regular_season_data_test.csv', headers: true) do |row|
+CSV.foreach('db/nfl_regular_season_data.csv', headers: true) do |row|
   Game.create(
     {
       date: DateTime.strptime(row["date"],"%m/%d/%Y"),
