@@ -1,6 +1,7 @@
 <%= link_to "&larr; Back".html_safe, root_path %>
 
 <h2>Games</h2>
+<h2><%= link_to "Log new game", new_game_path %></h2>
 
 <h3>NFL Regular Season Games</h3>
 <h3>Total Games Played: <%= @game_count %></h3>
@@ -44,6 +45,7 @@
       <th>Score</th>
       <th>Betting Line</th>
       <th>Over Under</th>
+      <th></th>
       <% @games.each do |game| %>
         <tr>
           <td><%= game.date %></td>
@@ -52,6 +54,12 @@
           <td><%= game.away_team_score%> - <%= game.home_team_score%></td>
           <td><%= game.betting_line %></td>
           <td><%= game.over_under %></td>
+          <td>
+            <% if game.manual_creation %>
+              <%=link_to "Delete Game", game_path(game), method: :delete %>
+            <% end %>
+          </td>
+
         </tr>
       <% end %>
     </table>

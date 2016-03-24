@@ -35,29 +35,22 @@ class GamesController < ApplicationController
   end
 
   def new
-    @team = Team.find(params[:team_id])
-    @game = @team.games.new
+    # @team = Team.find(params[:team_id])
+    @game = Game.new
+    @teams = Team.all
   end
 
   def create
-    @team = Team.find(params[:team_id])
-    @game = @team.games.new(game_params)
-    @game.user = @current_user
-    @game.save
-    redirect_to "/teams/#{@team.id}"
+    @game = Game.new(game_params)
+    @game.save!
+    redirect_to games_path
   end
 
   def show
     @game = Game.find(params[:id])
   end
 
-  def edit
-    return unless authorized
-    @game = Game.find(params[:id])
-  end
-
   def update
-    return unless authorized
     @game = Game.find(params[:id])
     @game.update(game_params)
 
@@ -65,7 +58,6 @@ class GamesController < ApplicationController
   end
 
   def destroy
-    return unless authorized
     @game = Game.find(params[:id])
     @game.destroy
     redirect_to games_path
@@ -73,7 +65,7 @@ class GamesController < ApplicationController
 
   private
   def game_params
-    params.require(:game).permit(:date, :away_team, :home_team, :away_team_score, :home_team_score, :betting_line, :over_under, :away_team_id, :home_team_id, :season)
+    params.require(:game).permit(:date, :away_team, :home_team, :away_team_score, :home_team_score, :betting_line, :over_under, :away_team_id, :home_team_id, :season, :manual_creation)
   end
 
 end

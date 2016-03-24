@@ -1,29 +1,25 @@
 <%= link_to "&larr; Home".html_safe, root_path %>
 
-<h1>Log a New Result for the <%= @team.name%></h1>
+<h1>Log a New Result</h1>
 
-<%= form_for :create do |f| %>
-  <%= date_field(:date, :date) %>
+<%= form_for @game do |f| %>
+  <%= f.date_field(:date) %>
   <br>
   <br>
-  <%= form_tag do %>
-    <%= @team.name + " are:"%>
-  <% end %>
-  <br>
-  <%=f.radio_button :away_team, 'Away' %> Away
-  <%=f.radio_button :away_team, 'Home' %> Home
+  <%= f.label :away_team_id %>
+  <%= f.text_field :away_team_id %>
   <br>
   <br>
-  <%= f.label :opponent %>
-  <%= f.text_field :opponent %>
+  <%= f.label :home_team%>
+  <%= f.select(:home_team_id, options_for_select(@teams.map{|team| [team.name, team.id]})) %>
   <br>
   <br>
-  <%= f.label @team.name + ' score'%>
+  <%= f.label :away_team_score%>
   <%= f.text_field :away_team_score %>
   <br>
   <br>
-  <%= f.label :opponent_score %>
-  <%= f.text_field :opponent_score %>
+  <%= f.label :home_team_score %>
+  <%= f.text_field :home_team_score %>
   <br>
   <br>
   <%= f.label :betting_line %>
@@ -34,5 +30,6 @@
   <%= f.text_field :over_under %>
   <br>
   <br>
+  <%= f.hidden_field :manual_creation, value: true %>
   <%= f.submit "Submit" %>
 <% end %>

@@ -3,5 +3,5 @@ Rails.application.routes.draw do
     resources :teams do
       resources :games
     end
-    resources :games, only: [:index]
+    resources :games
 end
