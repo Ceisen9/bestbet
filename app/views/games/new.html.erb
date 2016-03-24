@@ -6,8 +6,8 @@
   <%= f.date_field(:date) %>
   <br>
   <br>
-  <%= f.label :away_team_id %>
-  <%= f.text_field :away_team_id %>
+  <%= f.label :away_team%>
+  <%= f.select(:away_team_id, options_for_select(@teams.map{|team| [team.name, team.id]})) %>
   <br>
   <br>
   <%= f.label :home_team%>
