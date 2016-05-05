@@ -1,6 +1,19 @@
-<%= link_to "&larr; Home".html_safe, root_path %>
+<div class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <div class="navbar-brand"> <%= link_to 'BestBet', root_path, class: "name" %></div>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-<h1>Log a New Result</h1>
+      <ul class="nav navbar-nav">
+        <li><%= link_to "Go to Games", games_path, class: "games_path" %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="team_name">Log a New Result</div>
 
 <%= form_for @game do |f| %>
   <%= f.date_field(:date) %>

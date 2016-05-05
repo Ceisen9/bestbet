@@ -18,6 +18,102 @@
   text-align: center;
 }*/
 
+/*
+#30A9DE
+#EFDC05
+#E53A40
+#090707
+*/
+
+body{
+  background-color: #090707;
+  color: #EFDC05;
+}
+
 .row{
   padding-top: 20px;
+}
+
+.name{
+  font-family: 'Holtwood One SC', serif;
+  font-size: 50px;
+  text-decoration: underline;
+  color: #E53A40;
+  margin: 30px;
+}
+
+.container-fluid {
+  height: 60px;
+  background-color: #30A9DE;
+}
+
+.games_path{
+  color: #090707 !important;
+  font-size: 20px;
+  padding-top: 20px !important;
+}
+
+.col-md-1{
+  margin: 20px;
+}
+
+.col-md-2 {
+  width: 25% !important;
+}
+
+td.data_title{
+  font-weight: bold ;
+}
+
+td.data_row{
+  width: 100px;
+}
+
+.col-md-3 {
+  width: 40% !important;
+}
+
+table{
+  text-align: center;
+  color: #090707;
+}
+
+table a{
+  text-decoration: underline;
+  color: #090707;
+}
+
+.table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: #30A9DE;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: #ccd5b4;
+}
+
+th{
+  background-color: #E53A40;
+  text-align: center;
+  color: #EFDC05;
+}
+
+.games{
+  height: 80vh;
+  overflow-y: scroll;
+}
+
+.team_name{
+  text-align: center;
+  font-size: 40px;
+}
+
+.new_game{
+  text-align: center;
+  margin: 20px;
+}
+
+.log_new_game{
+  text-align: center;
+  font-size: 30px;
+  margin: 10px;
 }

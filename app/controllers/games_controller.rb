@@ -30,7 +30,9 @@ class GamesController < ApplicationController
 
     @betting_line_success_rate_away = ((@games.select(&:betting_line_success_count_away).count.to_f / @game_count.to_f) * 100).round(1)
 
-    @over_under_success_rate = ((@games.map(&:over_under_success).sum.to_f / @game_count.to_f) * 100).round(1)
+    @over_success_rate = ((@games.map(&:over_under_success).sum.to_f / @game_count.to_f) * 100).round(1)
+    
+    @under_success_rate = 100 - @over_success_rate
 
   end
 

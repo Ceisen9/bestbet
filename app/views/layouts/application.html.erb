@@ -2,7 +2,10 @@
 <html>
 <head>
   <title>Bestbet</title>
+  <%= stylesheet_link_tag 'https://getbootstrap.com/dist/css/bootstrap.css' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Holtwood+One+SC' %>
+  <%= javascript_include_tag 'https://getbootstrap.com/dist/js/bootstrap.js' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -11,7 +14,6 @@
 <%= yield %>
 </div>
 
-<link href="https://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
-<script src="https://getbootstrap.com/dist/js/bootstrap.js"></script>
+
 </body>
 </html>
